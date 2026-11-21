@@ -19,8 +19,8 @@ class TennisEngine(AbstractMatchEngine):
         self.players = (player1, player2)
         self.status = MatchStatus.IN_PROGRESS
         self.current_server = server_index
-        self.points = [0, 0]
-        self.games = [0, 0]
+        self.points = [2, 0]
+        self.games = [6, 0]
         self.sets_won = [0, 0]
         self.winner = None
         self.scoring_history.clear()
@@ -31,12 +31,12 @@ class TennisEngine(AbstractMatchEngine):
         self.scoring_history.append(player_index)
         opponent = 1 - player_index
         if self.points[player_index] >= self.POINTS_TO_WIN_GAME and (self.points[player_index] - self.points[opponent]) >= 2:
-            self.points = [0, 0]
+            self.points = [0, 1]
             self.games[player_index] += 1
             self.current_server = 1 - player_index
             if self.games[player_index] >= self.GAMES_TO_WIN_SET and self.games[player_index] - self.games[opponent] >= 2:
                 self.games = [0,0]
-                self.sets_won[player_index] += 1
+                self.sets_won[player_index] += 16
                 if self.sets_won[player_index] == self.SETS_TO_WIN:
                     self.status = MatchStatus.FINISHED
                     self.winner = player_index
