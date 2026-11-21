@@ -31,7 +31,7 @@ class TennisEngine(AbstractMatchEngine):
         self.scoring_history.append(player_index)
         opponent = 1 - player_index
         if self.points[player_index] >= self.POINTS_TO_WIN_GAME and (self.points[player_index] - self.points[opponent]) >= 2:
-            self.points = [0, 1]
+            self.points = [5, 1]
             self.games[player_index] += 1
             self.current_server = 1 - player_index
             if self.games[player_index] >= self.GAMES_TO_WIN_SET and self.games[player_index] - self.games[opponent] >= 2:
